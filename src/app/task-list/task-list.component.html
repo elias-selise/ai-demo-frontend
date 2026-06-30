@@ -50,7 +50,7 @@
             {{ getPriorityLabel(task.priority) }}
           </span>
         </td>
-        <td>{{ task.status }}</td>
+        <td>{{ getStatusLabel(task.status) }}</td>
         <td>{{ task.assignedTo }}</td>
         <td>{{ task.dueDate | date: 'mediumDate' }}</td>
         <td>

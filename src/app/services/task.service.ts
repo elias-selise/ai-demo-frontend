@@ -12,14 +12,19 @@ export class TaskService {
     'InProgress': 2,
     'Done': 3
   };
+    private readonly priorityMap: { [key in TaskPriority]: number } = {
+    'Low': 3,
+    'Medium': 2,
+    'High': 1
+  };
 
   constructor(private http: HttpClient) {}
 
   getTasks(filters?: { status?: TaskState; priority?: TaskPriority; assignedTo?: string }): Observable<TaskItem[]> {
     let params = new HttpParams();
-    if (filters?.status) params = params.set('status', filters.status);
-    if (filters?.priority) params = params.set('priority', filters.priority);
-    if (filters?.assignedTo) params = params.set('assignedTo', filters.assignedTo);
+    if (filters?.status) params = params.set('status', this.statusMap[filters.status]);
+    if (filters?.priority) params = params.set('priority', this.priorityMap[filters.priority]);
+    //if (filters?.assignedTo) params = params.set('assignedTo', filters.assignedTo);
 
     return this.http.get<TaskItem[]>(this.baseUrl, { params });
   }
