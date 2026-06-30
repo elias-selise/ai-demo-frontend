@@ -1,0 +1,31 @@
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 24px;
+  background: #12152b;
+}
+
+.brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.top-nav a {
+  color: #aab2d6;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.top-nav a.active {
+  color: #00bfa6;
+  font-weight: 600;
+}
+
+main {
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}

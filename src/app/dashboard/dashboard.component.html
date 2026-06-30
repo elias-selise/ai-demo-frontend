@@ -1,0 +1,24 @@
+<div class="dashboard">
+  <h2>Task Dashboard</h2>
+
+  <p *ngIf="loading">Loading...</p>
+
+  <div class="stats" *ngIf="!loading">
+    <div class="stat-card">
+      <span class="stat-value">{{ totalCount }}</span>
+      <span class="stat-label">Total</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value">{{ todoCount }}</span>
+      <span class="stat-label">To Do</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value">{{ inProgressCount }}</span>
+      <span class="stat-label">In Progress</span>
+    </div>
+    <div class="stat-card stat-done">
+      <span class="stat-value">{{ doneCount }}</span>
+      <span class="stat-label">Done</span>
+    </div>
+  </div>
+</div>

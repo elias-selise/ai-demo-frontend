@@ -1,0 +1,63 @@
+<div class="task-list">
+  <h2>All Tasks</h2>
+
+  <div class="filters">
+    <label>
+      Status
+      <select [(ngModel)]="statusFilter" (change)="applyFilters()">
+        <option value="">All</option>
+        <option value="Todo">To Do</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Done">Done</option>
+      </select>
+    </label>
+
+    <label>
+      Priority
+      <select [(ngModel)]="priorityFilter" (change)="applyFilters()">
+        <option value="">All</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </label>
+
+    <button (click)="sortByPriority()">Sort by priority</button>
+    <button (click)="sortByDueDate()">Sort by due date</button>
+  </div>
+
+  <p *ngIf="loading">Loading...</p>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Assigned To</th>
+        <th>Due Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of sortedTasks; let i = index">
+        <td>{{ task.title }}</td>
+        <td>
+          <span
+            class="badge"
+            [ngClass]="getPriorityClass(task.priority)"
+          >
+            {{ getPriorityLabel(task.priority) }}
+          </span>
+        </td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.assignedTo }}</td>
+        <td>{{ task.dueDate | date: 'mediumDate' }}</td>
+        <td>
+          <button *ngIf="getStatusLabel(task.status) === 'InProgress'" (click)="completeTask(i)">Mark complete</button>
+          <button *ngIf="getStatusLabel(task.status) === 'Todo'" (click)="inprogressTask(i)">Mark In-progress</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
